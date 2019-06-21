@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TruebilStorage from '../../utility/truebil-storage';
 import store from '../../redux-state';
 import {apiUrl} from '../../globalConstants';
+// import {fetchMovieData} from './actions';
 import {apiKey} from '../../globalConstants';
 
 
@@ -24,15 +25,9 @@ class Movie extends Component {
   //   const dataLoaded = this.props.dataLoaded;
 
   //   if (!dataLoaded) {
-  //     store.dispatch(fetchHomePageTrendingData(null, store));
+  //     store.dispatch(fetchMovieData(null, store));
   //     // Load the home page data
-  //   } 
-  //   if(!this.props.latestdataLoaded) {
-  //     store.dispatch(fetchHomePageLatestData(null, store)); 
-  //   } 
-  //   if(!this.props.watcheddataLoaded) {
-  //     store.dispatch(fetchHomePageWatchedData(null, store)); 
-  //   }   
+  //   }    
 
   // }
 
