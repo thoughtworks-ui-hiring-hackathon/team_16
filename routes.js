@@ -2,6 +2,7 @@ const routes = require('next-routes')
 
 module.exports = routes()
 .add('home-page', '/', 'home')
+.add('movie-page', '/movie/:id([0-9]+)(/?)*', 'movie')
 .add('dedicated-page', '/used-cars-in-:cityName([a-zA-Z]+)/:variant([0-9a-zA-Z\-\.\\(\\)\/\&]+)-:listingId([0-9]+)(/?)*', 'dedicated')
 .add('dedicatedOld-page', '/:oldListingUrl(mostValuedCars|mvc|listings)/index/:listingId([0-9]+)(/?)*', 'dedicated')
 .add('result-page', '/used:slug([-]*[0-9a-zA-Z\-\.\\(\\)\&]*)-cars-in-:cityName([a-zA-Z]+)(\/?)*', 'result')

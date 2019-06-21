@@ -1,5 +1,5 @@
 import React, { Component, Fragment} from 'react';
-import Link from 'next/link';
+import {Link} from '../.././routes';
 import {assetsUrl} from '../../globalConstants';
 import LazyLoad from 'react-lazy-load';
 import styles from './index.css';
@@ -56,19 +56,23 @@ class MovieCard extends React.Component {
     
     const movieInfo = this.props.movieInfo;
     return (
-      <div className='movie-card'>
-        <img className="movie-card-image" src={'https://image.tmdb.org/t/p/w500/' + movieInfo.backdrop_path}>
-          
-        </img>
-        <div className='details'>
-          <p className='movie-name'>{movieInfo.title}</p>
-          <p className='movie-genre'></p>
-          <div className='movie-rating'>
-            <span className='rating-text'>{movieInfo.vote_average}</span>
-          </div>
+      <Link route={'/movies?id='+ this.props.movieInfo.id}>
+        <a> 
+        <div className='movie-card'>
+          <img className="movie-card-image" src={'https://image.tmdb.org/t/p/w500/' + movieInfo.backdrop_path}>
+            
+          </img>
+          <div className='details'>
+            <p className='movie-name'>{movieInfo.title}</p>
+            <p className='movie-genre'></p>
+            <div className='movie-rating'>
+              <span className='rating-text'>{movieInfo.vote_average}</span>
+            </div>
 
+          </div>
         </div>
-      </div>
+        </a>
+      </Link>
     );
   }
 }
