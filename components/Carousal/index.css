@@ -19,8 +19,8 @@
   display: inline-block;
   vertical-align: middle;
 }
-.details {
-  
+.slick-prev:before, .slick-next:before {
+  color: #000 !important;
 }
 .movie-name {
   line-height: 1.429;
