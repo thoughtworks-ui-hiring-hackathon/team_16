@@ -23,7 +23,7 @@ class Index extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => console.log('kkkkkkkkkk', state.movie) || ({
   data: state.movie.data,
   loading: state.home.loading,
   dataLoaded: state.home.dataLoaded,

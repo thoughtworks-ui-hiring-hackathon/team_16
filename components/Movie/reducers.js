@@ -37,7 +37,7 @@ export default function movieReducer(state = initialState, action) {
         ...state,
         loading: false,
         dataLoaded: true,
-        trendingData: action.payload.data
+        data: action.payload.data
       };
 
     case FETCH_MOVIE_DATA_FAILURE:
