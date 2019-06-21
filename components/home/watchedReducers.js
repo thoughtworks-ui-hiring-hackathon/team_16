@@ -1,8 +1,8 @@
 import {
-  FETCH_HOMEPAGE_TRENDING_DATA_BEGIN,
-  FETCH_HOMEPAGE_TRENDING_DATA_SUCCESS,
-  FETCH_HOMEPAGE_TRENDING_DATA_FAILURE
-} from './actions';
+  FETCH_HOMEPAGE_WATCHED_DATA_BEGIN,
+  FETCH_HOMEPAGE_WATCHED_DATA_SUCCESS,
+  FETCH_HOMEPAGE_WATCHED_DATA_FAILURE
+} from './watchedActions';
 
 let initialState;
 const self = global ? global : window;
@@ -11,36 +11,36 @@ if (self.__NEXT_DATA__) {
   initialState = self.__NEXT_DATA__.props.initialState.home
 } else {
   initialState = {
-    trendingData: [],
+    watchedData: [],
     loading: false,
-    dataLoaded: false,
+    watcheddataLoaded: false,
     error: null
   };  
 }
 
-export default function homePageReducer(state = initialState, action) {
+export default function homePageWatchedReducer(state = initialState, action) {
   switch(action.type) {
-    case FETCH_HOMEPAGE_TRENDING_DATA_BEGIN:
+    case FETCH_HOMEPAGE_WATCHED_DATA_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         loading: true,
-        dataLoaded: false,
+        watcheddataLoaded: false,
         error: null
       };
 
-    case FETCH_HOMEPAGE_TRENDING_DATA_SUCCESS:
+    case FETCH_HOMEPAGE_WATCHED_DATA_SUCCESS:
       // All done: set loading "false".
       // Also, replace the data with the ones from the server
       return {
         ...state,
         loading: false,
-        dataLoaded: true,
-        trendingData: action.payload.data
+        watcheddataLoaded: true,
+        watchedData: action.payload.data
       };
 
-    case FETCH_HOMEPAGE_TRENDING_DATA_FAILURE:
+    case FETCH_HOMEPAGE_WATCHED_DATA_FAILURE:
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
       // Since it failed, we don't have data to display anymore, so set it empty.

@@ -1,0 +1,22 @@
+.header-universal {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  top: 0;
+  text-align: left;
+  background-color: #444A59;
+  color: #fff;
+  box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+.header-elements {
+  height: 70px;
+  color: #fff;
+}
+.header-item {
+  display: inline-block;
+  font-size:34px;
+  line-height: 70px;
+ margin: 0 12px;
+}

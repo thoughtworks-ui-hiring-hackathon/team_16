@@ -5,12 +5,13 @@ import Cookies from 'js-cookie';
 import TruebilStorage from '../../utility/truebil-storage';
 import {setConfig, updateConfig} from '../../globalActions';
 import {openModal, closeModal} from '../modal/actions';
-import {setGADimension} from '../.././helper';
 import styles from './common.css';
 import resetStyles from './reset.css';
 import rcSliderStyles from 'rc-slider/assets/index.css';
 import {assetsUrl, razorpayUrl, ravenLibUrl, ravenKey} from '../.././globalConstants';
-import {dropGAPixel} from '../../helper';
+import Header from '.././Header';
+import slickStyles1 from "slick-carousel/slick/slick.css";
+import slickStyles2 from "slick-carousel/slick/slick-theme.css";
 
 export default class extends React.Component {
   constructor(props) {
@@ -82,7 +83,11 @@ export default class extends React.Component {
       <Fragment>
         <style jsx global>{ resetStyles } </style>
         <style jsx global>{ styles } </style>
-        <style jsx global>{ rcSliderStyles } </style>
+        <style jsx global>{ slickStyles1 } </style>
+        <style jsx global>{ slickStyles2 } </style>
+        <style jsx global>{ styles } </style>
+
+        <Header />
         {this.props.children}  
       </Fragment>
     );

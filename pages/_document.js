@@ -36,16 +36,6 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-icon" sizes="192x192" href="https://dw745fgl22f1q.cloudfront.net/favicon/apple-touch-icon-192-v1.png" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" sizes="76x76" type="image/x-icon" href="https://dw745fgl22f1q.cloudfront.net/favicon/apple-touch-icon-76-v1.ico" />
-          <script dangerouslySetInnerHTML={{__html: `
-            // Redirect To desktop site if width is greter than 800
-            var width = screen.width;
-            if (width > 800) {
-              url = window.location.href;
-              url = url.replace(window.location.host, 'www.truebil.com');
-              document.location.replace(url);
-            } `
-            }}
-          />
         </Head>
         <body>
           <Main />

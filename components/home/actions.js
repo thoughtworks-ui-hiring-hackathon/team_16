@@ -1,66 +1,34 @@
 import React from 'react';
-import {arrayUnique} from '../../helper';
 import {updateConfig} from '../../globalActions';
 import TruebilStorage from '../../utility/truebil-storage';
 import {apiUrl} from '../../globalConstants';
+import {apiKey} from '../../globalConstants';
+import fetch from 'isomorphic-unfetch';
 
-export const FETCH_HOMEPAGE_DATA_BEGIN   = 'FETCH_HOMEPAGE_DATA_BEGIN';
-export const FETCH_HOMEPAGE_DATA_SUCCESS = 'FETCH_HOMEPAGE_DATA_SUCCESS';
-export const FETCH_HOMEPAGE_DATA_FAILURE = 'FETCH_HOMEPAGE_DATA_FAILURE';
 
-export function fetchHomePageData(isServer, store) {
-  const  headers = store.getState().config.requestHeaders;
-  let cityId = store.getState().config.cityInfo.id;
+export const FETCH_HOMEPAGE_TRENDING_DATA_BEGIN   = 'FETCH_HOMEPAGE_TRENDING_DATA_BEGIN';
+export const FETCH_HOMEPAGE_TRENDING_DATA_SUCCESS = 'FETCH_HOMEPAGE_TRENDING_DATA_SUCCESS';
+export const FETCH_HOMEPAGE_TRENDING_DATA_FAILURE = 'FETCH_HOMEPAGE_TRENDING_DATA_FAILURE';
 
-  // Don't call home page API if city is not present
-  if (!cityId) {
-    return dispatch => {
-      dispatch(fetchHomePageDataFailure());
-    }
-  }
+export function fetchHomePageTrendingData(isServer, store) {
+  
+  let apiLink = apiUrl;
+  let actionName = 'trending/movie/week?api_key=';
 
-  const buyerId = store.getState().config.buyerId;
-  let apiLink = apiUrl + 'home_page/';
-  let carSeenList = TruebilStorage.getItem('carSeenList');
-  let query = '';
+  let query = apiLink + actionName + apiKey;
+  console.log(query);
 
-  carSeenList = carSeenList ? arrayUnique(carSeenList.split(',').reverse()).slice(0, 3) : [];
-  query += '?city_id=' + cityId;
-
-  // Append buyer id if exist
-  query += buyerId ? ('&buyer_id=' + buyerId) : '';
-
-  // Car seen list
-  if (carSeenList.length) {
-    query += '&cars_seen=' + carSeenList;
-  }
-
-  apiLink = apiLink + query;
 
   return dispatch => {
-    dispatch(fetchHomePageDataBegin());
-    return fetch(apiLink, {
-      'headers': headers
-    })
+    dispatch(fetchHomePageTrendingDataBegin());
+    return fetch(query)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
-        if (json.is_revisited_user) {
-          updateConfig({isRevisitedUser: true});
-        } else if (!isServer) {
-          //If data available in session use that otherwise use response one
-          let popularCars = sessionStorage.getItem('popular_cars');
-          if (popularCars) {
-            popularCars = JSON.parse(popularCars);
-            json.popular_cars = popularCars;
-          } else {
-            sessionStorage.setItem('popular_cars', JSON.stringify(json.popular_cars));
-          }
-        }
-        dispatch(fetchHomePageDataSuccess(json));
+        dispatch(fetchHomePageTrendingDataSuccess(json));
         return json;
       })
-      .catch(error => dispatch(fetchHomePageDataFailure(error)));
+      .catch(error => dispatch(fetchHomePageTrendingDataFailure(error)));
   };
 }
 
@@ -72,16 +40,16 @@ function handleErrors(response) {
   return response;
 }
 
-export const fetchHomePageDataBegin = () => ({
-  type: FETCH_HOMEPAGE_DATA_BEGIN
+export const fetchHomePageTrendingDataBegin = () => ({
+  type: FETCH_HOMEPAGE_TRENDING_DATA_BEGIN
 });
 
-export const fetchHomePageDataSuccess = data => ({
-  type: FETCH_HOMEPAGE_DATA_SUCCESS,
+export const fetchHomePageTrendingDataSuccess = data => ({
+  type: FETCH_HOMEPAGE_TRENDING_DATA_SUCCESS,
   payload: { data }
 });
 
-export const fetchHomePageDataFailure = error => ({
-  type: FETCH_HOMEPAGE_DATA_FAILURE,
+export const fetchHomePageTrendingDataFailure = error => ({
+  type: FETCH_HOMEPAGE_TRENDING_DATA_FAILURE,
   payload: { error }
 });

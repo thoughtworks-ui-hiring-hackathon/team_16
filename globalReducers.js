@@ -1,5 +1,4 @@
 import TruebilStorage from './utility/truebil-storage';
-import { arrayUnique } from './helper.js';
 
 const  buyerId = TruebilStorage.getItem('buyerId');
 const isUserLoggedIn = TruebilStorage.getItem('isUserLoggedIn') === 'true';

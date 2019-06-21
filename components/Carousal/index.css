@@ -1,0 +1,50 @@
+.movie-card {
+  background-color: #fff;
+  border-radius: 3px;
+  position: relative;
+  padding: 0 9px;
+  display: block;
+}
+.movie-card-image {
+  height: 120px;
+  overflow: hidden;
+  height: 165px;
+  background-color: #f2f3f5;
+}
+.section-heading {
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.details {
+  
+}
+.movie-name {
+  line-height: 1.429;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 189px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #444A59;
+}
+.movie-rating {
+  background-color: #359666;
+  display: inline-block;
+  border-radius: 2px;
+  padding: 4px;
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  bottom: -5px;
+  right: 10px;
+}
+.rating-text {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+}
