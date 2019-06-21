@@ -11,7 +11,7 @@ if (self.__NEXT_DATA__) {
   initialState = self.__NEXT_DATA__.props.initialState.home
 } else {
   initialState = {
-    trendingData: [],
+    data: [],
     loading: false,
     dataLoaded: false,
     error: null

@@ -42,7 +42,7 @@ class Movie extends Component {
     return(
       <div>
         <style jsx global>{styles} </style>
-        <span>{JSON.stringify(this.props)}</span>
+        <span>{JSON.stringify(this.props.data)}</span>
       </div>     
     );
   }
